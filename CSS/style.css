@@ -38,10 +38,6 @@ header a{
     height: 3em;
     width: auto;
 }
-/* .container{
-    width: 70%;
-    margin: 0 auto;
-} */
 /*Controls position of posts*/
 #post-area{
     display: flex;
