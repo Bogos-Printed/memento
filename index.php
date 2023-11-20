@@ -12,11 +12,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Nunito&family=Pixelify+Sans&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Handlee&family=Nunito&display=swap" rel="stylesheet">
     <title>Memento stuff</title>
-    <style>
+    <!-- <style>
         *{
             outline: 2px solid black;
         }
-    </style>
+    </style> -->
+    <!-- To Be Deleted -->
 </head>
 
 <body>
