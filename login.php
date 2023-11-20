@@ -1,5 +1,8 @@
 <?php
 if ($_SERVER["REQUEST_METHOD"] == "POST"){
+    include("connection.php");
+    $email= $bdd['email'];
+    $password= $bdd['password'];
     if ($_POST["email"] == $email and $_POST["password"] == $password) {
         header("location:index.php");
         $_SESSION['login'] = true;
