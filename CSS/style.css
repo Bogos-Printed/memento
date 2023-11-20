@@ -1,0 +1,52 @@
+*{
+    margin: 0 1em 1em 1em;
+}
+header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+header p{
+    font-size: x-large;
+    padding: 10px;
+}
+header a{
+    padding: 1em;
+}
+.top{
+    background-color: aquamarine;
+    display: flex;
+    flex-direction: column;
+}
+.top h1{
+    text-align: center;
+}
+.top input{
+    align-self: center;
+}
+/* .container{
+    width: 70%;
+    margin: 0 auto;
+} */
+/*Controls position of posts*/
+#post-area{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;    
+}
+/*Controls position of post's content*/
+.note{
+    display: flex;
+    flex-direction: column;
+    
+    margin:0;
+    width: 30%;
+    background-color: #feff9c;
+} 
+.note *{
+    width: fit-content;
+}
+.note input{
+
+}
