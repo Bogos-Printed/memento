@@ -29,14 +29,20 @@ header a{
     font-weight: 700;
     margin: 0;
 }
-.top input{
+.top a{
     align-self: center;
-    color: #fff;
+    
+    
+    height: 3em;
+    
+}
+.top button{
     background-color: #2786df;
+    color: #fff;
     border: none;
     border-radius: 0.5em;
-    height: 3em;
     width: auto;
+    height: 3em;
 }
 /*Controls position of posts*/
 #post-area{

@@ -29,44 +29,26 @@ require "connection.php";
         </nav>
     </header>
     <main>
-        <section class="top">
+        <section class="top" method="post">
             <h1>Memento</h1>
-            <input type="button" onclick="" value="Add Post-It">
+            <a href="memomaker.php"><button name="button" value="Add Post-It">Add Post-It</button></a>
         </section>
         <section id="post-area">
-            <div class="note container">
-                <?php 
+            <?php 
                 $query = "SELECT * FROM memos";
                 $response = $bdd->query($query);
                 $datas = $response->fetchAll();
                 
                 foreach($datas as $data) {?>
-
-                <div class="title_button">
-                    <h2><?= $data['title'] ?><br></h2>
-                    <input type="button" value="X" alt="delete button">
+                <div class="note container">
+                    <div class="title_button">
+                        <h2><?= $data['title'] ?><br></h2>
+                        <input type="button" value="X" alt="delete button">
+                    </div>
+                    <?= $data['content'] ?><br>
+                    <?= $data['date'] ?><br>
                 </div>
-                
-                <?= $data['content'] ?><br>
-                <?= $data['date'] ?><br>
-            </div>
             <?php } ?>
-            <!-- <div class="note container">
-                <div class="title_button">
-                    <h2>title</h2>
-                    <input type="button" value="X" alt="delete button">
-                </div>
-                <p>paragraph</p>
-                <p>paragraph</p>
-            </div>
-            <div class="note container">
-                <div class="title_button">
-                    <h2>title</h2>
-                    <input type="button" value="X" alt="delete button">
-                </div>
-                <p>paragraph</p>
-                <a href="#">some link to a website</a>
-            </div> -->
         </section>
         
     </main>

@@ -2,26 +2,32 @@
 require("connection.php");
 if ($_SERVER["REQUEST_METHOD"] == "POST"){
     
-    // if ($_POST["email"] == $bdd and $_POST["password_confirm"] == $bdd) {
-    //     $_SESSION['login'] = true;
-    // }
-    // if ($_SESSION["login"] = true){
-    //     header("location:index.php");
-    // }
-
-    // if (empty($_POST["email"]) || empty($_POST["password"])){
-    //     echo 'error, please input log-in informations';
-    // }
-
+    //passwords don't match
+    if ($_POST["password"] != $_POST["password_confirm"]){
+        echo "error passwords do not match";
+    }
     
-    $req = $bdd->prepare("INSERT INTO users( username, name, first_name, email, password) VALUES (:username, :name, :firstname, :email, :password)");
-    $req -> execute([
-        ":username" => $_POST["username"] ,
-        ":name" => $_POST['name'],
-        ":firstname" => $_POST['firstname'], 
-        ":email" => $_POST["email"],
-        ":password" => $_POST['password'],
-    ]);//alas it finally works, Don't touch!
+    //obligatory info missing
+    if (empty($_POST["email"]) || empty($_POST["password"])||empty($_POST["username"])){
+        echo 'error, please input log-in informations like the username email and password';
+    }
+
+    //form properly filled
+    if (!empty($_POST["email"]) and !empty($_POST["password"]) === $_POST["password_confirm"]) {
+        $req = $bdd->prepare("INSERT INTO users( username, name, first_name, email, password) VALUES (:username, :name, :firstname, :email, :password)");
+        $req -> execute([
+            ":username" => $_POST["username"] ,
+            ":name" => $_POST['name'],
+            ":firstname" => $_POST['firstname'], 
+            ":email" => $_POST["email"],
+            ":password" => $_POST['password'],
+        ]);//alas it finally works, Don't touch!
+        // $_SESSION['login'] = true;
+    // if ($_SESSION["login"] = true){
+        header("location:index.php");
+    }
+    
+    
     
 
 }
@@ -48,7 +54,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
         <input id="firstname" type="text" name="firstname"><br>
 
         <label for="email">Insert mail</label><br>
-        <input id="email" type="text" name="email"><br>
+        <input id="email" type="email" name="email"><br>
 
         <label for="password">Insert password</label><br>
         <input id="password" type="password" name="password"><br>
