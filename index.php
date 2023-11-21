@@ -1,5 +1,5 @@
 <?php
-
+require "connection.php";
 
 ?>
 
@@ -35,16 +35,23 @@
         </section>
         <section id="post-area">
             <div class="note container">
+                <?php 
+                $query = "SELECT * FROM memos";
+                $response = $bdd->query($query);
+                $datas = $response->fetchAll();
+                
+                foreach($datas as $data) {?>
+
                 <div class="title_button">
-                    <h2>title</h2>
+                    <h2><?= $data['title'] ?><br></h2>
                     <input type="button" value="X" alt="delete button">
                 </div>
-                <p>paragraph</p>
-                <p>paragraph</p>
-                <p>paragraph</p>
-                <p>paragraph</p>
+                
+                <?= $data['content'] ?><br>
+                <?= $data['date'] ?><br>
             </div>
-            <div class="note container">
+            <?php } ?>
+            <!-- <div class="note container">
                 <div class="title_button">
                     <h2>title</h2>
                     <input type="button" value="X" alt="delete button">
@@ -59,9 +66,9 @@
                 </div>
                 <p>paragraph</p>
                 <a href="#">some link to a website</a>
-            </div>
+            </div> -->
         </section>
-
+        
     </main>
 </body>
 </html>
