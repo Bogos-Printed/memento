@@ -34,16 +34,17 @@ require "connection.php";
             <a href="memomaker.php"><button name="button" value="Add Post-It">Add Post-It</button></a>
         </section>
         <section id="post-area">
-            <?php 
+            <?php //gets every memos from database
                 $query = "SELECT * FROM memos";
                 $response = $bdd->query($query);
                 $datas = $response->fetchAll();
                 
                 foreach($datas as $data) {?>
+
                 <div class="note container">
                     <div class="title_button">
                         <h2><?= $data['title'] ?><br></h2>
-                        <input type="button" value="X" alt="delete button">
+                        <a href='delete.php?id=<?= $data['id']?>' title='<?= $data['title']?>'><?= $data['id']?><input type="button" value="X" alt="delete button"></a>
                     </div>
                     <?= $data['content'] ?><br>
                     <?= $data['date'] ?><br>

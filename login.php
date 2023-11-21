@@ -1,17 +1,19 @@
 <?php
+// session_start();
 if ($_SERVER["REQUEST_METHOD"] == "POST"){
     include("connection.php");
-    $email= $bdd['email'];
-    $password= $bdd['password'];
-    if ($_POST["email"] == $email and $_POST["password"] == $password) {
-        header("location:index.php");
+
+    //when email and password are filled in 
+    if (!empty($_POST["email"]) && !empty($_POST["password"])){
+        // header("location:index.php");
         $_SESSION['login'] = true;
     }
-    // if ($_SESSION["login"] = true){
-    //     header("location:index.php");
-    // }
 
-    if (empty($_POST["email"]) and empty($_POST["password"]) or $_POST["email"] != $email and $_POST["password"] != $password){
+    if ($_SESSION["login"] = true){
+        header("location:index.php");
+    }
+
+    if (empty($_POST["email"]) && empty($_POST["password"])){
         echo 'error, please input log-in informations';
     }
 }
