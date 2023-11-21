@@ -1,18 +1,29 @@
 <?php
 require("connection.php");
-
 if ($_SERVER["REQUEST_METHOD"] == "POST"){
+    
+    // if ($_POST["email"] == $bdd and $_POST["password_confirm"] == $bdd) {
+    //     $_SESSION['login'] = true;
+    // }
+    // if ($_SESSION["login"] = true){
+    //     header("location:index.php");
+    // }
 
-    if ($_POST["email"] == $bdd and $_POST["password_confirm"] == $bdd) {
-        $_SESSION['login'] = true;
-    }
-    if ($_SESSION["login"] = true){
-        header("location:index.php");
-    }
+    // if (empty($_POST["email"]) || empty($_POST["password"])){
+    //     echo 'error, please input log-in informations';
+    // }
 
-    if (empty($_POST["email"]) || empty($_POST["password"])){
-        echo 'error, please input log-in informations';
-    }
+    
+    $req = $bdd->prepare("INSERT INTO users( username, name, first_name, email, password) VALUES (:username, :name, :firstname, :email, :password)");
+    $req -> execute([
+        ":username" => $_POST["username"] ,
+        ":name" => $_POST['name'],
+        ":firstname" => $_POST['firstname'], 
+        ":email" => $_POST["email"],
+        ":password" => $_POST['password'],
+    ]);//alas it finally works, Don't touch!
+    
+
 }
 
 ?>
@@ -40,7 +51,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
         <input id="email" type="text" name="email"><br>
 
         <label for="password">Insert password</label><br>
-        <input id="password" type="password" name="password_confirm"><br>
+        <input id="password" type="password" name="password"><br>
         
         <label for="password">confirm password</label><br>
         <input id="password" type="password" name="password_confirm"><br>
