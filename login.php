@@ -3,16 +3,23 @@
 if ($_SERVER["REQUEST_METHOD"] == "POST"){
     include("connection.php");
 
-    //when email and password are filled in 
-    if (!empty($_POST["email"]) && !empty($_POST["password"])){
-        // header("location:index.php");
-        $_SESSION['login'] = true;
-    }
+    $data = $bdd ->prepare("SELECT FROM users(email, password");
+    $data -> execute([
+    ":email" => $_POST["email"],
+    ":password" => $_POST['password'],
+    ]);
 
-    if ($_SESSION["login"] = true){
+    //when email and password are filled in 
+    if (!empty($_POST["email"]) == $data && !empty($_POST["password"]) == $data){
+    //     $_SESSION['login'] = true;
+    // }
+    // if ($_SESSION["login"] = true){
         header("location:index.php");
     }
 
+    if (!empty($_POST["email"]) != $data && !empty($_POST["password"]) != $data){
+        echo 'error, email or password is incorrect';
+    }
     if (empty($_POST["email"]) && empty($_POST["password"])){
         echo 'error, please input log-in informations';
     }
